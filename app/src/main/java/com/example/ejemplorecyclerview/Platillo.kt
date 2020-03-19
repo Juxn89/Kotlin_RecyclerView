@@ -1,9 +1,9 @@
 package com.example.ejemplorecyclerview
 
-class Platillo(nombre:String, precio:Double, rating:Double, foto:Int) {
+class Platillo(nombre:String, precio:Double, rating:Float, foto:Int) {
     var nombre:String = ""
     var precio:Double = 0.0
-    var rating:Double = 0.0
+    var rating:Float = 0.0f
     var foto:Int = 0
 
     init {

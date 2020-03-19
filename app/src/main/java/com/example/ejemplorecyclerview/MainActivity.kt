@@ -16,16 +16,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val platillos = ArrayList<Platillo>()
-        platillos.add(Platillo("Platillo 01", 250.0, 3.5, R.drawable.foto_01))
-        platillos.add(Platillo("Platillo 02", 250.0, 3.5, R.drawable.foto_02))
-        platillos.add(Platillo("Platillo 03", 250.0, 3.5, R.drawable.foto_03))
-        platillos.add(Platillo("Platillo 04", 250.0, 3.5, R.drawable.foto_04))
-        platillos.add(Platillo("Platillo 05", 250.0, 3.5, R.drawable.foto_05))
-        platillos.add(Platillo("Platillo 05", 250.0, 3.5, R.drawable.foto_06))
-        platillos.add(Platillo("Platillo 05", 250.0, 3.5, R.drawable.foto_07))
-        platillos.add(Platillo("Platillo 05", 250.0, 3.5, R.drawable.foto_08))
-        platillos.add(Platillo("Platillo 05", 250.0, 3.5, R.drawable.foto_09))
-        platillos.add(Platillo("Platillo 05", 250.0, 3.5, R.drawable.foto_10))
+        platillos.add(Platillo("Platillo 01", 250.0, 3.5f, R.drawable.foto_01))
+        platillos.add(Platillo("Platillo 02", 250.0, 3.5f, R.drawable.foto_02))
+        platillos.add(Platillo("Platillo 03", 250.0, 3.5f, R.drawable.foto_03))
+        platillos.add(Platillo("Platillo 04", 250.0, 3.5f, R.drawable.foto_04))
+        platillos.add(Platillo("Platillo 05", 250.0, 3.5f, R.drawable.foto_05))
+        platillos.add(Platillo("Platillo 05", 250.0, 3.5f, R.drawable.foto_06))
+        platillos.add(Platillo("Platillo 05", 250.0, 3.5f, R.drawable.foto_07))
+        platillos.add(Platillo("Platillo 05", 250.0, 3.5f, R.drawable.foto_08))
+        platillos.add(Platillo("Platillo 05", 250.0, 3.5f, R.drawable.foto_09))
+        platillos.add(Platillo("Platillo 05", 250.0, 3.5f, R.drawable.foto_10))
 
         lista = findViewById(R.id.lista)
         lista?.setHasFixedSize(true)
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)
         lista?.layoutManager = layoutManager
 
-        adaptador = AdaptadorCustom(platillos)
+        adaptador = AdaptadorCustom(this, platillos)
         lista?.adapter = adaptador
     }
 }
