@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,5 +44,14 @@ class MainActivity : AppCompatActivity() {
 
         })
         lista?.adapter = adaptador
+
+        val swipeToRefresh = findViewById<SwipeRefreshLayout>(R.id.swipeToRefresh)
+        swipeToRefresh.setOnRefreshListener {
+            for (i in 1..1000000000) { }
+
+            swipeToRefresh.isRefreshing = false
+            platillos.add(Platillo("Platillo 11", 250.0, 3.5f, R.drawable.foto_01))
+            adaptador?.notifyDataSetChanged()
+        }
     }
 }
