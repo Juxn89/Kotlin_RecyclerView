@@ -41,8 +41,12 @@ class MainActivity : AppCompatActivity() {
             override fun onCLick(vista: View, index: Int) {
                 Toast.makeText(applicationContext!!, platillos[index].nombre.toString(), Toast.LENGTH_SHORT).show()
             }
-
+        }, object:LongClickListener {
+            override fun longClick(vista: View, index: Int) {
+                Log.d("LONG", "PRUEBA")
+            }
         })
+
         lista?.adapter = adaptador
 
         val swipeToRefresh = findViewById<SwipeRefreshLayout>(R.id.swipeToRefresh)
