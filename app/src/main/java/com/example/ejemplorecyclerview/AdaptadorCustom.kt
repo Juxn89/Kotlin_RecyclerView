@@ -31,7 +31,7 @@ class AdaptadorCustom(var contexto:Context, items:ArrayList<Platillo>):RecyclerV
         val item = items?.get(position)
         holder.foto?.setImageResource(item?.foto!!)
         holder.nombre?.text = item?.nombre
-        holder.precio?.text = item?.precio.toString()
+        holder.precio?.text = "$${item?.precio.toString()}"
         holder.rating?.rating = item?.rating!!
     }
 
