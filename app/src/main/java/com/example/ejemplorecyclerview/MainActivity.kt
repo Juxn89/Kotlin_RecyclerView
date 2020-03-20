@@ -74,8 +74,9 @@ class MainActivity : AppCompatActivity() {
                 if (!isActionMode) {
                     startSupportActionMode(callBack)
                     isActionMode = true
+                    adaptador?.seleccionarItem(index)
                 } else {
-
+                    adaptador?.seleccionarItem(index)
                 }
             }
         })
