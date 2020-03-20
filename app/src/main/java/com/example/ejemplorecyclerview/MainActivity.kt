@@ -3,6 +3,9 @@ package com.example.ejemplorecyclerview
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ActionMode
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     var lista:RecyclerView? = null
     var adaptador:AdaptadorCustom? = null
     var layoutManager:RecyclerView.LayoutManager? = null
+
+    var isActionMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +42,41 @@ class MainActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)
         lista?.layoutManager = layoutManager
 
+        val callBack = object:androidx.appcompat.view.ActionMode.Callback {
+            override fun onActionItemClicked(mode: androidx.appcompat.view.ActionMode?, item: MenuItem?): Boolean {
+                adaptador?.terminarActionMode()
+                mode?.finish()
+                isActionMode = false
+                return  true
+            }
+
+            override fun onCreateActionMode(mode: androidx.appcompat.view.ActionMode?, menu: Menu?): Boolean {
+                adaptador?.inicialActionMode()
+                return true
+            }
+
+            override fun onPrepareActionMode(mode: androidx.appcompat.view.ActionMode?, menu: Menu?): Boolean {
+                return false
+            }
+
+            override fun onDestroyActionMode(mode: androidx.appcompat.view.ActionMode?) {
+                adaptador?.destruirActionMode()
+                isActionMode = false
+            }
+        }
+
         adaptador = AdaptadorCustom(platillos, object:ClickListener{
             override fun onCLick(vista: View, index: Int) {
                 Toast.makeText(applicationContext!!, platillos[index].nombre.toString(), Toast.LENGTH_SHORT).show()
             }
         }, object:LongClickListener {
             override fun longClick(vista: View, index: Int) {
-                Log.d("LONG", "PRUEBA")
+                if (!isActionMode) {
+                    startSupportActionMode(callBack)
+                    isActionMode = true
+                } else {
+
+                }
             }
         })
 

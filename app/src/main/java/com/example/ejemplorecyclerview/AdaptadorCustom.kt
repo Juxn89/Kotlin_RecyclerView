@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class AdaptadorCustom(items:ArrayList<Platillo>, var listener: ClickListener, var longClickListener:LongClickListener):RecyclerView.Adapter<AdaptadorCustom.ViewHolder>() {
     var items: ArrayList<Platillo>? = null
+    var multiSeleccion = false
 
     init {
         this.items = items
@@ -33,6 +34,19 @@ class AdaptadorCustom(items:ArrayList<Platillo>, var listener: ClickListener, va
         holder.nombre?.text = item?.nombre
         holder.precio?.text = "$${item?.precio.toString()}"
         holder.rating?.rating = item?.rating!!
+    }
+
+    fun inicialActionMode() {
+        multiSeleccion = true
+    }
+
+    fun destruirActionMode() {
+        multiSeleccion = false
+        notifyDataSetChanged()
+    }
+
+    fun terminarActionMode() {
+        multiSeleccion = false
     }
 
     class ViewHolder(vista:View, listener: ClickListener, longListener: LongClickListener):RecyclerView.ViewHolder(vista), View.OnClickListener, View.OnLongClickListener {
